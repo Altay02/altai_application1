@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width">
+		<title>Math generator</title>
+		<style>
+			.rootcontainer{
+				display: none;
+				text-align: center;
+				font-size: 25px;
+				line-height: 4rem;
+			}
+			.container{
+				display: inline-block;
+				vertical-align: middle;
+			}
+		</style>
+		<link rel="stylesheet" href="style.css">
+		<script type="text/javascript" async
+						src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML">
+		</script>
+		<!-- В скрипте выше я связываю эту страницу с последней версией MathJax через CDN провайдер,cdnjs, в случае, если mathml перестанет нормально отображаться, надо обновить этот скрипт, для этого надо найти инструкцию в справочнике сайта MathJax (http://docs.mathjax.org/en/latest/start.html)-->
+	</head>
+
+
+	<body>
+		<div style="display: block;">
+			<nav role='navigation'>
+				<ul><li><a href="#">About</a>
+					<ul>
+						<li id='btnSquareEq'>Square Equation</li>
+						<li id='btnpolynomial3'>Возвратное ур 3 степени</li>
+					</ul>
+					</li>
+					<li><a href="#">Home</a></li>
+					<li><a href="#">Contact Us</a>
+
+				</ul>
+			</nav>
+		</div>
+		<button id='btnGenerate'>Generate</button>
+		<!--Возвратное ур 3 степени-->
+		<div id="polynomial3" class="rootcontainer">
+			<div class="container">
+				<math id="math" xmlns="http://www.w3.org/1998/Math/MathML">
+					<mrow>
+						<mrow>
+							<mo id="singa"></mo>
+							<mi id="a">a</mi>
+							<mo>&InvisibleTimes;</mo>
+							<msup>
+								<mi>x</mi>
+								<mn>3</mn>
+							</msup>
+						</mrow>
+						<mo id="signb">+</mo>
+						<mrow>
+							<mi id="bss">b</mi>
+							<mo>&InvisibleTimes;</mo>
+							<msup>
+								<mi>x</mi>
+								<mn>2</mn>
+							</msup>
+						</mrow>
+						<mo id="signc">+</mo>
+						<mrow>
+							<mi id="c">c</mi>							
+							<mo>&InvisibleTimes;</mo>
+							<mi>x</mi>
+						</mrow>
+						<mo id="signd">+</mo>
+						<mi id="d">d</mi>
+						<mo>=</mo>
+						<mn>0</mn>
+					</mrow>
+				</math>
+			</div>
+			<p id="parpolynomial3"></p>
+		</div>
+		<!--Квадратное ур-->
+		<div id="squareEq" class="rootcontainer">
+			<div class="container">
+				<math id="math" xmlns="http://www.w3.org/1998/Math/MathML">
+					<mrow>
+						<msup>
+							<mi>x</mi>
+							<mn>2</mn>
+						</msup>
+						<mo id="signb">+</mo>
+						<mrow id="mrow">
+							<mn id="b">b</mn>
+							<mi id="bi">x</mi>
+						</mrow>
+						<mo id="signc">+</mo>
+						<mn id="c">c</mn>
+						<mo>=</mo>
+						<mn>0</mn>
+					</mrow>
+				</math>
+			</div>
+			<p id="parSquareEq"></p>
+		</div>
+		<script src="main.js"></script>
+	</body>
+</html>
