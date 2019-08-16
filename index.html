@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width">
+		<title>Math generator</title>
+		<style>
+			.rootcontainer{
+				display: none;
+				text-align: center;
+				font-size: 25px;
+				line-height: 4rem;
+				padding: 40px;
+			}
+			.container{
+				display: inline-block;
+				vertical-align: middle;
+			}
+		</style>
+		<link rel="stylesheet" href="style.css">
+		<script type="text/javascript" async
+				src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML">
+		</script>
+		<!-- В скрипте выше я связываю эту страницу с последней версией MathJax через CDN провайдер,cdnjs, в случае, если mathml перестанет нормально отображаться, надо обновить этот скрипт, для этого надо найти инструкцию в справочнике сайта MathJax (http://docs.mathjax.org/en/latest/start.html)-->
+	</head>
+
+
+	<body>
+		<div style="display: block;">
+			<nav role='navigation'>
+				<ul><li><a href="#">About</a>
+					<ul>
+						<li id='btnSquareEq'>Квадратное уравнение</li>
+						<li id='btnPolynomial3'>Возвратное ур 3 степени</li>
+						<li id='btnPolynomial4'>Возвратное ур 4 степени</li>
+						<li id='btnPhomogeneousSq'>Однородное ур > квадратное</li>
+						<li id='btnPhomogeneousPolynomial3'>Однородное ур > возвратное 3 степени</li>
+						<li id='btnMethodOfUndeterCoef'>Уравнение на метод неопределенных коэффициентов</li>
+						<li id='btnInequality'>Неравенство</li>
+					</ul>
+					</li>
+					<li><a href="#">Home</a></li>
+					<li><a href="#">Contact Us</a>
+
+				</ul>
+			</nav>
+		</div>
+		<button id='btnGenerate'>Generate</button>
+		
+		<div id="Inequality" class="roootcontainer">
+			<div class="container">
+				<math id="math" xmlns="http://www.w3.org/1998/Math/MathML">
+					<mrow>
+						<msup>
+							<mi>x</mi>
+							<mn>2</mn>
+						</msup>
+						<mo id="signb">+</mo>
+						<mrow id="mrow">
+							<mn id="b">b</mn>
+							<mo>&InvisibleTimes;</mo>
+							<mi id="bi">x</mi>
+						</mrow>
+						<mo id="signc">+</mo>
+						<mn id="c">c</mn>
+						<mo>=</mo>
+						<mn>0</mn>
+					</mrow>
+				</math>
+			</div>
+			<p id="parSquareEq"></p>
+		</div>
+
+		<div id="MethodOfUndeterCoef" class="rootcontainer">
+			<div class="container">
+				<math id="math" xmlns="http://www.w3.org/1998/Math/MathML">
+					<mrow>
+						<mrow>
+							<msup>
+								<mi>x</mi>
+								<mn>4</mn>
+							</msup>
+						</mrow>
+						<mo id="signb">+</mo>
+						<mrow>
+							<mi id="b">b</mi>
+							<mo>&InvisibleTimes;</mo>
+							<msup>
+								<mi>x</mi>
+								<mn>3</mn>
+							</msup>
+						</mrow>
+						<mo id="signc">+</mo>
+						<mrow>
+							<mi id="c">с</mi>
+							<mo>&InvisibleTimes;</mo>
+							<msup>
+								<mi>x</mi>
+								<mn>2</mn>
+							</msup>
+						</mrow>
+						<mo id="signd">+</mo>
+						<mrow>
+							<mi id="d">d</mi>							
+							<mo>&InvisibleTimes;</mo>
+							<mi>x</mi>
+						</mrow>
+						<mo id="signe">+</mo>
+						<mi id="e">e</mi>
+						<mo>=</mo>
+						<mn>0</mn>
+					</mrow>
+				</math>
+			</div>
+			<p id="par1MethodOfUndeterCoef"></p>
+		</div>
+
+		<div id="PhomogeneousPolynomial3" class="rootcontainer">
+			<div class="container">
+				<math id="math" xmlns="http://www.w3.org/1998/Math/MathML">
+					<mrow>
+						<mrow>
+							<mo id="signa"></mo>
+							<mi id="a">a</mi>
+							<mo>&InvisibleTimes;</mo>
+							<msup>
+								<mi>x</mi>
+								<mn>3</mn>
+							</msup>
+						</mrow>
+						<mo id="signb">+</mo>
+						<mrow>
+							<mi id="b">b</mi>
+							<mo>&InvisibleTimes;</mo>
+							<msup>
+								<mi>x</mi>
+								<mn>2</mn>
+							</msup>
+							<mo>&InvisibleTimes;</mo>
+							<mi>y</mi>
+						</mrow>
+						<mo id="signb2">+</mo>
+						<mrow>
+							<mi id="b2">b</mi>							
+							<mo>&InvisibleTimes;</mo>
+							<mi>x</mi>
+							<mo>&InvisibleTimes;</mo>
+							<msup>
+								<mi>y</mi>
+								<mn>2</mn>
+							</msup>
+						</mrow>
+						<mo id="signa2">+</mo>
+						<mi id="a2">a</mi>
+						<mo>&InvisibleTimes;</mo>
+						<msup>
+							<mi>y</mi>
+							<mn>3</mn>
+						</msup>
+						<mo>=</mo>
+						<mn>0</mn>
+					</mrow>
+				</math>
+			</div>
+			<p id="parPhomogeneousPolynomial3"></p>
+		</div>
+
+		<!--ОднородноеКвадратное ур -->
+		<div id="PhomogeneousSq" class="rootcontainer">
+			<div class="container">
+				<math id="math" xmlns="http://www.w3.org/1998/Math/MathML">
+					<mrow>
+						<mo id="signa"></mo>
+						<mi id="a">a</mi>
+						<mo>&InvisibleTimes;</mo>
+						<msup>
+							<mi id="ai">x</mi>
+							<mn>2</mn>
+						</msup>
+						<mo id="signb">+</mo>
+						<mrow id="mrow">
+							<mn id="b">b</mn>
+							<mo>&InvisibleTimes;</mo>
+							<mi id="bix">x</mi>
+							<mo>&InvisibleTimes;</mo>
+							<mi id="biy">y</mi>
+						</mrow>
+						<mo id="signс">+</mo>
+						<mn id="c">c</mn>
+						<mo>&InvisibleTimes;</mo>
+						<msup>
+							<mi id="ci">y</mi>
+							<mn>2</mn>
+						</msup>
+						<mo>=</mo>
+						<mn>0</mn>
+					</mrow>
+				</math>
+			</div>
+			<p id="parPhomogeneousSq"></p>
+		</div>
+
+		<!--Возвратное ур 4 степени-->
+		<div id="Polynomial4" class="rootcontainer">
+			<div class="container">
+				<math id="math" xmlns="http://www.w3.org/1998/Math/MathML">
+					<mrow>
+						<mrow>
+							<mo id="signa"></mo>
+							<mi id="a">a</mi>
+							<mo>&InvisibleTimes;</mo>
+							<msup>
+								<mi>x</mi>
+								<mn>4</mn>
+							</msup>
+						</mrow>
+						<mo id="signb">+</mo>
+						<mrow>
+							<mi id="b">b</mi>
+							<mo>&InvisibleTimes;</mo>
+							<msup>
+								<mi>x</mi>
+								<mn>3</mn>
+							</msup>
+						</mrow>
+						<mo id="signс">+</mo>
+						<mrow>
+							<mi id="c">с</mi>
+							<mo>&InvisibleTimes;</mo>
+							<msup>
+								<mi>x</mi>
+								<mn>2</mn>
+							</msup>
+						</mrow>
+						<mo id="signb2">+</mo>
+						<mrow>
+							<mi id="b2">b</mi>							
+							<mo>&InvisibleTimes;</mo>
+							<mi>x</mi>
+						</mrow>
+						<mo id="signa2">+</mo>
+						<mi id="a2">a</mi>
+						<mo>=</mo>
+						<mn>0</mn>
+					</mrow>
+				</math>
+			</div>
+			<p id="par1Polynomial4"></p>
+			<p id="par2Polynomial4"></p>
+		</div>
+
+		<!--Возвратное ур 3 степени-->
+		<div id="Polynomial3" class="rootcontainer">
+			<div class="container">
+				<math id="math" xmlns="http://www.w3.org/1998/Math/MathML">
+					<mrow>
+						<mrow>
+							<mo id="signa"></mo>
+							<mi id="a">a</mi>
+							<mo>&InvisibleTimes;</mo>
+							<msup>
+								<mi>x</mi>
+								<mn>3</mn>
+							</msup>
+						</mrow>
+						<mo id="signb">+</mo>
+						<mrow>
+							<mi id="b">b</mi>
+							<mo>&InvisibleTimes;</mo>
+							<msup>
+								<mi>x</mi>
+								<mn>2</mn>
+							</msup>
+						</mrow>
+						<mo id="signb2">+</mo>
+						<mrow>
+							<mi id="b2">b</mi>							
+							<mo>&InvisibleTimes;</mo>
+							<mi>x</mi>
+						</mrow>
+						<mo id="signa2">+</mo>
+						<mi id="a2">a</mi>
+						<mo>=</mo>
+						<mn>0</mn>
+					</mrow>
+				</math>
+			</div>
+			<p id="parPolynomial3"></p>
+		</div>
+
+		<!--Квадратное ур-->
+		<div id="SquareEq" class="rootcontainer">
+			<div class="container">
+				<math id="math" xmlns="http://www.w3.org/1998/Math/MathML">
+					<mrow>
+						<msup>
+							<mi>x</mi>
+							<mn>2</mn>
+						</msup>
+						<mo id="signb">+</mo>
+						<mrow id="mrow">
+							<mn id="b">b</mn>
+							<mo>&InvisibleTimes;</mo>
+							<mi id="bi">x</mi>
+						</mrow>
+						<mo id="signc">+</mo>
+						<mn id="c">c</mn>
+						<mo>=</mo>
+						<mn>0</mn>
+					</mrow>
+				</math>
+			</div>
+			<p id="parSquareEq"></p>
+		</div>
+
+		<script src="main.js"></script>
+	</body>
+</html>
