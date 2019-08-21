@@ -17,6 +17,12 @@
 				display: inline-block;
 				vertical-align: middle;
 			}
+			#shit {
+				display: none;
+			}
+			#bracket1,#bracket2,#bracket3,#bracket4,#bracket5 {
+				display: none;
+			}
 		</style>
 		<link rel="stylesheet" href="style.css">
 		<script type="text/javascript" async
@@ -46,12 +52,15 @@
 				</ul>
 			</nav>
 		</div>
-		<button id='btnGenerate'>Generate</button>
 		
-		<div id="Inequality" class="roootcontainer">
-			<div class="container">
-				<math id="math" xmlns="http://www.w3.org/1998/Math/MathML">
-					<mrow>
+		<button id='btnGenerate'>Generate</button>
+		&#x221E;
+		<div id="mathtest" class="roojtcontainer">
+			<math id="math" xmlns="http://www.w3.org/1998/Math/MathML">
+				<mfrac>
+					<mrow id="testmrow">
+						<mo id="signa"></mo>
+						<mn id="a">a&infin;</mn>
 						<msup>
 							<mi>x</mi>
 							<mn>2</mn>
@@ -63,18 +72,200 @@
 							<mi id="bi">x</mi>
 						</mrow>
 						<mo id="signc">+</mo>
-						<mn id="c">c</mn>
-						<mo>=</mo>
+						<mn id="c"></mn>
+					</mrow>
+					<mrow>
+						<mn>
+							-&infin;
+						</mn>
+
+					</mrow>
+				</mfrac>
+				<mo>=</mo>
+				<mn>0</mn>
+			</math>
+		</div>
+		<h1>В дж/скрипте сделал вывод в консоль rootsFinal, preRanges и ranges. ranges- 3-мерный массив, чьи данные надо тупо вывести в ответ. Там диапазоны на блюдечке предоставлены</h1>
+<!---------------------------------------------------------------------------------------------->
+		<div id="Inequality" class="rootcontainer">
+			<div id="Equation" class="container">
+				<math xmlns="http://www.w3.org/1998/Math/MathML">
+					<mrow>
+						<mo id="signa"></mo>
+						<mn id="a">a</mn>
+						<mo>&InvisibleTimes;</mo>
+						<msup>
+							<mi>x</mi>
+							<mn>2</mn>
+						</msup>
+						<mrow id="mrowb">
+							<mo id="signb">+</mo>
+							<mn id="b">b</mn>
+							<mo>&InvisibleTimes;</mo>
+							<mi id="bi">x</mi>
+						</mrow>
+						<mrow id="mrowc">
+							<mo id="signc">+</mo>
+							<mn id="c">c</mn>
+						</mrow>
+						<mo id="equal">&#x2265;</mo>
 						<mn>0</mn>
 					</mrow>
 				</math>
 			</div>
-			<p id="parSquareEq"></p>
+			<div id="EquationsFraction" class="container">
+				<math xmlns="http://www.w3.org/1998/Math/MathML">
+					<mfrac>
+						<mrow>
+							<mrow id="numerator1">
+								<mo id="numeratorOpen1">(</mo>
+								<mo id="signa"></mo>
+								<mn id="a">a</mn>
+								<mo>&InvisibleTimes;</mo>
+								<msup>
+									<mi>x</mi>
+									<mn>2</mn>
+								</msup>
+								<mrow id="mrowb">
+									<mo id="signb">+</mo>
+									<mn id="b">b</mn>
+									<mo>&InvisibleTimes;</mo>
+									<mi id="bi">x</mi>
+								</mrow>
+								<mrow id="mrowc">
+									<mo id="signc">+</mo>
+									<mn id="c">c</mn>
+								</mrow>
+								<mo id="numeratorClose1">)</mo>
+							</mrow>
+							<mrow id="numerator2">
+								<mo id="numeratorOpen2">(</mo>
+								<mo id="signa"></mo>
+								<mn id="a">a</mn>
+								<mo>&InvisibleTimes;</mo>
+								<msup>
+									<mi>x</mi>
+									<mn>2</mn>
+								</msup>
+								<mrow id="mrowb">
+									<mo id="signb">+</mo>
+									<mn id="b">b</mn>
+									<mo>&InvisibleTimes;</mo>
+									<mi id="bi">x</mi>
+								</mrow>
+								<mrow id="mrowc">
+									<mo id="signc">+</mo>
+									<mn id="c">c</mn>
+								</mrow>
+								<mo id="numeratorClose2">)</mo>
+							</mrow>
+						</mrow>
+						<mrow>
+							<mrow id="denominator1">
+								<mo id="denominatorOpen1">(</mo>
+								<mo id="signa"></mo>
+								<mn id="a">a</mn>
+								<mo>&InvisibleTimes;</mo>
+								<msup>
+									<mi>x</mi>
+									<mn>2</mn>
+								</msup>
+								<mrow id="mrowb">
+									<mo id="signb">+</mo>
+									<mn id="b">b</mn>
+									<mo>&InvisibleTimes;</mo>
+									<mi id="bi">x</mi>
+								</mrow>
+								<mrow id="mrowc">
+									<mo id="signc">+</mo>
+									<mn id="c">c</mn>
+								</mrow>
+								<mo id="denominatorClose1">)</mo>
+							</mrow>
+							<mrow id="denominator2">
+								<mo id="denominatorOpen2">(</mo>
+								<mo id="signa"></mo>
+								<mn id="a">a</mn>
+								<mo>&InvisibleTimes;</mo>
+								<msup>
+									<mi>x</mi>
+									<mn>2</mn>
+								</msup>
+								<mrow id="mrowb">
+									<mo id="signb">+</mo>
+									<mn id="b">b</mn>
+									<mo>&InvisibleTimes;</mo>
+									<mi id="bi">x</mi>
+								</mrow>
+								<mrow id="mrowc">
+									<mo id="signc">+</mo>
+									<mn id="c">c</mn>
+								</mrow>
+								<mo id="denominatorClose2">)</mo>
+							</mrow>
+						</mrow>
+					</mfrac>
+					<mo id="equal">=</mo>
+					<mn>0</mn>
+				</math>
+			</div>
+			<p id="parInequality"></p>
+			<div id="answers">
+				<span>answer = </span>
+				<math xmlns="http://www.w3.org/1998/Math/MathML">
+					<mrow id="bracket-infin" class="bracket">
+						<mfenced separators=";">
+							<mn id="bracketNumber1">-&infin;</mn>
+							<mn id="bracketNumber2"></mn>
+						</mfenced>
+					</mrow>
+					<mrow id="bracket1" class="bracket">
+						<mfenced separators=";">
+							<mn id="bracketNumber1"></mn>
+							<mn id="bracketNumber2"></mn>
+						</mfenced>
+					</mrow>
+					<mrow id="bracket2" class="bracket">
+						<mo>&#x222a;</mo>
+						<mfenced separators=";">
+							<mn id="bracketNumber1"></mn>
+							<mn id="bracketNumber2"></mn>
+						</mfenced>
+					</mrow>
+					<mrow id="bracket3" class="bracket">
+						<mo>&#x222a;</mo>
+						<mfenced separators=";">
+							<mn id="bracketNumber1"></mn>
+							<mn id="bracketNumber2"></mn>
+						</mfenced>
+					</mrow>
+					<mrow id="bracket4" class="bracket">
+						<mo>&#x222a;</mo>
+						<mfenced separators=";">
+							<mn id="bracketNumber1"></mn>
+							<mn id="bracketNumber2"></mn>
+						</mfenced>
+					</mrow>
+					<mrow id="bracket5" class="bracket">
+						<mo>&#x222a;</mo>
+						<mfenced separators=";">
+							<mn id="bracketNumber1"></mn>
+							<mn id="bracketNumber2"></mn>
+						</mfenced>
+					</mrow>
+					<mrow id="bracket+infin" class="bracket">
+						<mfenced separators=";">
+							<mn id="bracketNumber1"></mn>
+							<mn id="bracketNumber2">+&infin;</mn>
+						</mfenced>
+					</mrow>
+				</math>
+			</div>
 		</div>
 
 		<div id="MethodOfUndeterCoef" class="rootcontainer">
 			<div class="container">
-				<math id="math" xmlns="http://www.w3.org/1998/Math/MathML">
+				<math xmlns="http://www.w3.org/1998/Math/MathML">
 					<mrow>
 						<mrow>
 							<msup>
@@ -118,7 +309,7 @@
 
 		<div id="PhomogeneousPolynomial3" class="rootcontainer">
 			<div class="container">
-				<math id="math" xmlns="http://www.w3.org/1998/Math/MathML">
+				<math xmlns="http://www.w3.org/1998/Math/MathML">
 					<mrow>
 						<mrow>
 							<mo id="signa"></mo>
@@ -169,7 +360,7 @@
 		<!--ОднородноеКвадратное ур -->
 		<div id="PhomogeneousSq" class="rootcontainer">
 			<div class="container">
-				<math id="math" xmlns="http://www.w3.org/1998/Math/MathML">
+				<math xmlns="http://www.w3.org/1998/Math/MathML">
 					<mrow>
 						<mo id="signa"></mo>
 						<mi id="a">a</mi>
@@ -204,7 +395,7 @@
 		<!--Возвратное ур 4 степени-->
 		<div id="Polynomial4" class="rootcontainer">
 			<div class="container">
-				<math id="math" xmlns="http://www.w3.org/1998/Math/MathML">
+				<math xmlns="http://www.w3.org/1998/Math/MathML">
 					<mrow>
 						<mrow>
 							<mo id="signa"></mo>
@@ -253,7 +444,7 @@
 		<!--Возвратное ур 3 степени-->
 		<div id="Polynomial3" class="rootcontainer">
 			<div class="container">
-				<math id="math" xmlns="http://www.w3.org/1998/Math/MathML">
+				<math xmlns="http://www.w3.org/1998/Math/MathML">
 					<mrow>
 						<mrow>
 							<mo id="signa"></mo>
@@ -292,20 +483,24 @@
 		<!--Квадратное ур-->
 		<div id="SquareEq" class="rootcontainer">
 			<div class="container">
-				<math id="math" xmlns="http://www.w3.org/1998/Math/MathML">
+				<math xmlns="http://www.w3.org/1998/Math/MathML">
 					<mrow>
+						<mo id="signa"></mo>
+						<mn id="a">a</mn>
 						<msup>
 							<mi>x</mi>
 							<mn>2</mn>
 						</msup>
-						<mo id="signb">+</mo>
-						<mrow id="mrow">
+						<mrow id="mrowb">
+							<mo id="signb">+</mo>
 							<mn id="b">b</mn>
 							<mo>&InvisibleTimes;</mo>
-							<mi id="bi">x</mi>
+							<mi>x</mi>
 						</mrow>
-						<mo id="signc">+</mo>
-						<mn id="c">c</mn>
+						<mrow id="mrowc">
+							<mo id="signc">+</mo>
+							<mn id="c">c</mn>
+						</mrow>
 						<mo>=</mo>
 						<mn>0</mn>
 					</mrow>

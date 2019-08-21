@@ -20,6 +20,7 @@ var phomogeneousSq = document.getElementById("PhomogeneousSq");
 var phomogeneousPolynomial3 = document.getElementById("PhomogeneousPolynomial3");
 var methodOfUndeterCoef = document.getElementById("MethodOfUndeterCoef");
 var inequality = document.getElementById("Inequality");
+var mathtest = document.getElementById("mathtest");
 
 
 btnSquareEq.onclick = function () {
@@ -95,10 +96,279 @@ function amountOfNumerals(x) {
 	return (x.toString().includes('.')) ? (x.toString().split('.').pop().length) : 0;
 }
 
-function inequalityGenerate() {
+function testGenerate() {
+	var Equation1 = new SquareEqObject();
+	var testmrow = mathtest.querySelector("#testmrow");
+	var signa = testmrow.querySelector("#signa"),
+		a = testmrow.querySelector("#a"),
+		signb = testmrow.querySelector("#signb"),
+		b = testmrow.querySelector("#b"),
+		signc = testmrow.querySelector("#signc"),
+		c = testmrow.querySelector("#c");
+	a.textContent = Math.abs(Equation1.a);
+	signa.textContent = Equation1.a >= 0 ? "" : "-";
+	b.textContent = Math.abs(Equation1.b);
+	signb.textContent = Equation1.b >= 0 ? "+" : "-";
+	c.textContent = Math.abs(Equation1.c).toString();
+	signc.textContent = Equation1.c >= 0 ? "+" : "-";
 
 }
 
+function inequalityGenerate() {
+	// генерация рандомного знака неравенства
+	var equation = inequality.querySelector("#Equation"),
+		equationsFraction = inequality.querySelector("#EquationsFraction"),
+		equal1 = equation.querySelector("#equal"),
+		equal2 = equationsFraction.querySelector("#equal"),
+		inequalitySign = "",
+		amountOfEquations = Math.floor(Math.random() * 4 + 1);
+	// расстановка знака неравенства
+	if (amountOfEquations === 1) {
+		if (Math.random() < 0.25) {
+			inequalitySign = ">=";
+			equal1.innerHTML = "&#x2265;";
+		} else if (Math.random() < 0.5) {
+			inequalitySign = "<=";
+			equal1.innerHTML = "&#x2264;";
+		} else if (Math.random() < 0.75) {
+			inequalitySign = ">";
+			equal1.innerHTML = "&#x003e;";
+		} else {
+			inequalitySign = "<";
+			equal1.innerHTML = "&#x003c;";
+		}
+	} else {
+		if (Math.random() < 0.25) {
+			inequalitySign = ">=";
+			equal2.innerHTML = "&#x2265;";
+		} else if (Math.random() < 0.5) {
+			inequalitySign = "<=";
+			equal2.innerHTML = "&#x2264;";
+		} else if (Math.random() < 0.75) {
+			inequalitySign = ">";
+			equal2.innerHTML = "&#x003e;";
+		} else {
+			inequalitySign = "<";
+			equal2.innerHTML = "&#x003c;";
+		}
+	}
+
+	var highCoefSign = [],
+		roots = [];
+
+	var	par1 = inequality.querySelector("#parInequality"),
+		// объявляю множители дроби
+		numerator1 = inequality.querySelector("#numerator1"),
+		denominator1 = inequality.querySelector("#denominator1"),
+		numerator2 = inequality.querySelector("#numerator2"),
+		denominator2 = inequality.querySelector("#denominator2"),
+		// объявляю операторы скобок
+		numeratorOpen1 = inequality.querySelector("#numeratorOpen1"),
+		numeratorClose1 = inequality.querySelector("#numeratorClose1"),
+		denominatorOpen1 = inequality.querySelector("#denominatorOpen1"),
+		denominatorClose1 = inequality.querySelector("#denominatorClose1"),
+		// объявление дивки неравенства-параболы
+		equation1 = inequality.querySelector("#Equation"),
+		Equation1 = new SquareEqObject(true),
+		Equation2 = new SquareEqObject(true),
+		Equation3 = new SquareEqObject(true),
+		Equation4 = new SquareEqObject(true),
+		// объявление элементов в числителе
+		n1a = numerator1.querySelector("#a"),
+		n1signa = numerator1.querySelector("#signa"),
+		n1b = numerator1.querySelector("#b"),
+		n1signb = numerator1.querySelector("#signb"),
+		n1c = numerator1.querySelector("#c"),
+		n1signc = numerator1.querySelector("#signc"),
+		n1mrowb = numerator1.querySelector("#mrowb"),
+		n1mrowc = numerator1.querySelector("#mrowc"),
+		// 2 скобка числителя
+		n2a = numerator2.querySelector("#a"),
+		n2signa = numerator2.querySelector("#signa"),
+		n2b = numerator2.querySelector("#b"),
+		n2signb = numerator2.querySelector("#signb"),
+		n2c = numerator2.querySelector("#c"),
+		n2signc = numerator2.querySelector("#signc"),
+		n2mrowb = numerator2.querySelector("#mrowb"),
+		n2mrowc = numerator2.querySelector("#mrowc"),
+		// объявление элементов в знаменателе
+		d1a = denominator1.querySelector("#a"),
+		d1signa = denominator1.querySelector("#signa"),
+		d1b = denominator1.querySelector("#b"),
+		d1signb = denominator1.querySelector("#signb"),
+		d1c = denominator1.querySelector("#c"),
+		d1signc = denominator1.querySelector("#signc"),
+		d1mrowb = denominator1.querySelector("#mrowb"),
+		d1mrowc = denominator1.querySelector("#mrowc"),
+		// 2 скобка знаменателя
+		d2a = denominator2.querySelector("#a"),
+		d2signa = denominator2.querySelector("#signa"),
+		d2b = denominator2.querySelector("#b"),
+		d2signb = denominator2.querySelector("#signb"),
+		d2c = denominator2.querySelector("#c"),
+		d2signc = denominator2.querySelector("#signc"),
+		d2mrowb = denominator2.querySelector("#mrowb"),
+		d2mrowc = denominator2.querySelector("#mrowc");
+	// объявление скобок в ответе
+
+
+	if (amountOfEquations === 1) {
+		var a = equation1.querySelector("#a"),
+			signa = equation1.querySelector("#signa"),
+			b = equation1.querySelector("#b"),
+			signb = equation1.querySelector("#signb"),
+			c = equation1.querySelector("#c"),
+			signc = equation1.querySelector("#signc"),
+			mrowb = equation1.querySelector("#mrowb"),
+			mrowc = equation1.querySelector("#mrowc");
+
+		Equation1.drawing(a, signa, b, signb, c, signc, mrowb, mrowc);
+
+		roots = [[Equation1.x1, true], [Equation1.x2, true]];
+		SORT(roots);
+		highCoefSign = (Equation1.a > 0 ? ["+", "-"] : ["-", "+"]);
+	} else if (amountOfEquations === 2) {
+		numerator1.style.display = "inline-block";
+		denominator1.style.display = "inline-block";
+		numerator2.style.display = "none";
+		denominator2.style.display = "none";
+		numeratorOpen1.textContent = "";
+		numeratorClose1.textContent = "";
+		denominatorOpen1.textContent = "";
+		denominatorClose1.textContent = "";
+		Equation1.drawing(n1a, n1signa, n1b, n1signb, n1c, n1signc, n1mrowb, n1mrowc);
+		Equation2.drawing(d1a, d1signa, d1b, d1signb, d1c, d1signc, d1mrowb, d1mrowc);
+		// записываем матрицу корней
+		roots = [
+			[Equation1.x1, true],
+			[Equation1.x2, true],
+			[Equation2.x1, false],
+			[Equation2.x2, false]];
+		SORT(roots);
+		highCoefSign = ((Equation1.a > 0 && Equation2.a > 0) || (Equation1.a < 0 && Equation2.a < 0) ? ["+", "-"] : ["-", "+"]);
+	} else if (amountOfEquations === 3) {
+		numerator1.style.display = "inline-block";
+		denominator1.style.display = "inline-block";
+		numerator2.style.display = "inline-block";
+		denominator2.style.display = "none";
+		numeratorOpen1.textContent = "(";
+		numeratorClose1.textContent = ")";
+		denominatorOpen1.textContent = "";
+		denominatorClose1.textContent = "";
+		Equation1.drawing(n1a, n1signa, n1b, n1signb, n1c, n1signc, n1mrowb, n1mrowc);
+		Equation2.drawing(n2a, n2signa, n2b, n2signb, n2c, n2signc, n2mrowb, n2mrowc);
+		Equation3.drawing(d1a, d1signa, d1b, d1signb, d1c, d1signc, d1mrowb, d1mrowc);
+		// записываем матрицу корней
+		roots = [
+			[Equation1.x1, true],
+			[Equation1.x2, true],
+			[Equation2.x1, true],
+			[Equation2.x2, true],
+			[Equation3.x1, false],
+			[Equation3.x2, false]];
+		SORT(roots);
+		var i = 0;
+		i = (Equation1.a < 0 ? i+1 : i);
+		i = (Equation2.a < 0 ? i+1 : i);
+		i = (Equation3.a < 0 ? i+1 : i);
+		highCoefSign = (i % 2 === 0 ? ["+", "-"] : ["-", "+"]);
+	} else {
+		numerator1.style.display = "inline-block";
+		denominator1.style.display = "inline-block";
+		numerator2.style.display = "inline-block";
+		denominator2.style.display = "inline-block";
+		numeratorOpen1.textContent = "(";
+		numeratorClose1.textContent = ")";
+		denominatorOpen1.textContent = "(";
+		denominatorClose1.textContent = ")";
+		Equation1.drawing(n1a, n1signa, n1b, n1signb, n1c, n1signc, n1mrowb, n1mrowc);
+		Equation2.drawing(n2a, n2signa, n2b, n2signb, n2c, n2signc, n2mrowb, n2mrowc);
+		Equation3.drawing(d1a, d1signa, d1b, d1signb, d1c, d1signc, d1mrowb, d1mrowc);
+		Equation4.drawing(d2a, d2signa, d2b, d2signb, d2c, d2signc, d2mrowb, d2mrowc);
+		// записываем матрицу корней
+		roots = [
+			[Equation1.x1, true],
+			[Equation1.x2, true],
+			[Equation2.x1, true],
+			[Equation2.x2, true],
+			[Equation3.x1, false],
+			[Equation3.x2, false],
+			[Equation4.x1, false],
+			[Equation4.x2, false]];
+		SORT(roots);
+		var i = 0;
+		i = (Equation1.a < 0 ? i+1 : i);
+		i = (Equation2.a < 0 ? i+1 : i);
+		i = (Equation3.a < 0 ? i+1 : i);
+		i = (Equation4.a < 0 ? i+1 : i);
+		highCoefSign = (i % 2 === 0 ? ["+", "-"] : ["-", "+"]);
+	}
+	var rootsFinal = [],
+		ranges = [],
+		preRootsFinal = clone(roots);
+	// расстановка степеней корней, плюсов/минусов, удаление одинаковых корней, добавление +/- бесконечности => создание матрицы корней
+	for(var i = 0, j = 0; i < preRootsFinal.length; i++) {
+		rootsFinal.push(preRootsFinal[i]);
+		rootsFinal[i].push((preRootsFinal[i][1] === true ? 1 : -1));
+		if (inequalitySign === ">" || inequalitySign === "<") {
+			rootsFinal[i][1] = false;
+		}
+		while (i < preRootsFinal.length - 1 && preRootsFinal[i][0] === preRootsFinal[i+1][0]) {
+			if (preRootsFinal[i+1][1] === false) {
+				rootsFinal[i][1] = false;
+				rootsFinal[i][2]--;
+			} else {
+				rootsFinal[i][2]++;
+			}
+			preRootsFinal.splice(i+1, 1);
+		}
+		// расстановка плюсов/минусов
+		rootsFinal[i].push(highCoefSign[j % 2]);
+		j = (Math.abs(rootsFinal[i][2] % 2) === 1 ? j+1 : j);
+	}
+
+	rootsFinal.unshift([Infinity, false, 1, ""]);
+
+	rootsFinal.push([-Infinity, false, 1, ((rootsFinal[rootsFinal.length-1][3] === "+" && Math.abs(rootsFinal[rootsFinal.length-1][2] % 2) === 1) || (rootsFinal[rootsFinal.length-1][3] === "-" && Math.abs(rootsFinal[rootsFinal.length-1][2] % 2) === 0) ? "-" : "+")]);
+	// конец расстановки степеней корней, плюсов/минусов, удаления одинаковых корней, добавления +/- бесконечности => создания матрицы корней
+
+	// удаление корней, находящихся в диапазоне между 2-мя соседними корнями, счет начинается с 1, потому что первый элемент массива не имеет знака плюс/минус
+	var preRanges = clone(rootsFinal);
+	for (var i = 1; i < rootsFinal.length - 1; i++) {
+		if (preRanges[i][1] === true && preRanges[i][3] === preRanges[i+1][3]) {
+			preRanges.splice(i, 1);
+		}
+	}
+	preRanges.reverse();
+
+	if (inequalitySign === ">=" || inequalitySign === ">") {
+		for(var i = 0; i < preRanges.length; i++) {
+			if (preRanges[i][3] === "+") {
+				ranges.push([[preRanges[i][0], preRanges[i][1]], [preRanges[i+1][0],  preRanges[i+1][1]]]);
+			}
+		}
+	} else {
+		for(var i = 0; i < preRanges.length; i++) {
+			if (preRanges[i][3] === "-") {
+				ranges.push([[preRanges[i][0], preRanges[i][1]], [preRanges[i+1][0],  preRanges[i+1][1]]]);
+			}
+		}
+	}
+	inequalityGenerate.rootsFinal = rootsFinal;
+	inequalityGenerate.preRanges = preRanges;
+	inequalityGenerate.ranges = ranges;
+	console.log(rootsFinal);
+	console.log(preRanges);
+	console.log(ranges);
+	par1.textContent = " ans= " + roots + ";          rootsFinal= " + rootsFinal + "               ranges= " + ranges;
+	if (inequalitySign === ">=") {
+		for(var i = 0; i < 5; i++) {
+			if (ranges[i] === "+") {
+
+			}
+		}
+	}
+}
 
 function methodOfUndeterCoefGenerate() {
 	var par1 = methodOfUndeterCoef.querySelector("#par1MethodOfUndeterCoef"),
@@ -364,44 +634,64 @@ function polynomial3Generate() {
 
 function squareEqGenerate() {
 	var par = squareEq.querySelector("#parSquareEq"),
+		signa = squareEq.querySelector("#signa"),
+		a = squareEq.querySelector("#a"),
 		signb = squareEq.querySelector("#signb"),
-		bi = squareEq.querySelector("#bi"),
 		b = squareEq.querySelector("#b"),
 		signc = squareEq.querySelector("#signc"),
 		c = squareEq.querySelector("#c"),
+		mrowb = squareEq.querySelector("#mrowb"),
+		mrowc = squareEq.querySelector("#mrowc"),
 		// начало генерации
-		x1 = Math.floor(Math.random() * 20 - 10),
+		/*x1 = Math.floor(Math.random() * 20 - 10),
 		x2 = Math.floor(Math.random() * 20 - 10),
 		bb = -x1 - x2,
 		cc = x1 * x2;
-	b.textContent = Math.abs(bb);
-	c.textContent = Math.abs(cc);
-	bi.textContent = 'x';
-	if (bb === 1) {
+		*/
+		Equation1 = new SquareEqObject(true);
+
+	Equation1.drawing(a, signa, b, signb, c, signc, mrowb, mrowc);
+	/*if (Equation1.b === 1) {
 		signb.textContent = '+';
 		b.textContent = '';
-	} else if (bb === -1) {
+	} else if (Equation1.b === -1) {
 		signb.textContent = '-';
 		b.textContent = '';
-	} else if (bb > 0) {
+	} else if (Equation1.b > 0) {
 		signb.textContent = '+';
-	} else if (bb < 0) {
+	} else if (Equation1.b < 0) {
 		signb.textContent = '-';
 	} else {
 		bi.textContent = '';
 		b.textContent = '';
 		signb.textContent = '';
 	}
-	if (cc > 0) {
+	if (Equation1.a === 1) {
+		signa.textContent = '';
+		a.textContent = '';
+	} else if (Equation1.a === -1) {
+		signa.textContent = '-';
+		a.textContent = '';
+	} else if (Equation1.a > 0) {
+		signa.textContent = '';
+	} else {
+		signa.textContent = '-';
+	} 
+
+	if (Equation1.c > 0) {
 		signc.textContent = '+';
-	} else if (cc < 0) {
+	} else if (Equation1.c < 0) {
 		signc.textContent = '-';
 	} else {
 		c.textContent = '';
 		signc.textContent = '';
-	}
-	par.textContent = 'корни: ' + x1 + ' ' + x2;
+	}*/
+	par.textContent = 'корни: ' + Equation1.x1 + ' ' + Equation1.x2;
+
 }
+
+//*****************************************************************************************
+//*****************************************************************************************
 
 // кнопка для генерации уравнения
 btnGenerate.onclick = function () {
@@ -424,22 +714,29 @@ btnGenerate.onclick = function () {
 		case "MethodOfUndeterCoef":
 			methodOfUndeterCoefGenerate();
 			break;
-
+		case "Inequality":
+			inequalityGenerate();
+			break;
+		case "":
+			testGenerate();
+			break;
 
 	}
 };
 
-function SquareEqObject(nullsAllowed) {
+// конструктор квадратных уравнений
+function SquareEqObject(nullsAllowed, range) {
 	// если b или c могут быть равны нулю
+	var range = range || 20;
 	if (nullsAllowed === true) {
-		var x1 = Math.floor(Math.random() * 41 - 20) / 2,
-			x2 = Math.floor(Math.random() * 41 - 20) / 2,
+		var x1 = Math.floor(Math.random() * (2 * range + 1) - range) / 2,
+			x2 = Math.floor(Math.random() * (2 * range + 1) - range) / 2,
 			nb = -(x1 + x2),
 			nc = x1 * x2;
 	} else {
 		do {
-			var x1 = Math.floor(Math.random() * 41 - 20) / 2,
-				x2 = Math.floor(Math.random() * 41 - 20) / 2,
+			var x1 = Math.floor(Math.random() * (2 * range + 1) - range) / 2,
+				x2 = Math.floor(Math.random() * (2 * range + 1) - range) / 2,
 				nb = -(x1 + x2),
 				nc = x1 * x2;
 		} while (nb === 0 || nc === 0);
@@ -471,14 +768,85 @@ function SquareEqObject(nullsAllowed) {
 	nb = nb * (denominator / nab);
 	nc = nc * (denominator / nac);
 	var na = denominator;
+
+	if (Math.random() < 0.25) {
+		na = -na;
+		nb = -nb;
+		nc = -nc;
+	}
 	this.x1 = x1;
 	this.x2 = x2;
 	this.a = na;
 	this.b = nb;
 	this.c = nc;
-	this.greeting = function() {
-		alert('Hi! I\'m ' + this.name + '.');
-	};
+}
+
+// метод квадратного уравнения
+SquareEqObject.prototype.drawing = function(a, signa, b, signb, c, signc, mrowb, mrowc) {
+	mrowb.style.display = "inline-block";
+	mrowc.style.display = "inline-block";
+	a.textContent = Math.abs(this.a);
+	b.textContent = Math.abs(this.b);
+	c.textContent = Math.abs(this.c);
+	if (this.b === 1) {
+		signb.textContent = '+';
+		b.textContent = '';
+	} else if (this.b === -1) {
+		signb.textContent = '-';
+		b.textContent = '';
+	} else if (this.b > 0) {
+		signb.textContent = '+';
+	} else if (this.b < 0) {
+		signb.textContent = '-';
+	} else {
+		mrowb.style.display = "none";
+	}
+	if (this.a === 1) {
+		signa.textContent = '';
+		a.textContent = '';
+	} else if (this.a === -1) {
+		signa.textContent = '-';
+		a.textContent = '';
+	} else if (this.a > 0) {
+		signa.textContent = '';
+	} else {
+		signa.textContent = '-';
+	} 
+
+	if (this.c > 0) {
+		signc.textContent = '+';
+	} else if (this.c < 0) {
+		signc.textContent = '-';
+	} else {
+		mrowc.style.display = "none";
+	}
+}
+/*
+function ranges(roots) {
+	var i = 0;
+	for(var i = 0; i < roots.length; i++){
+
+	}
+}
+*/
+
+// клонирует двумерный массив
+function clone(currentArray) {
+	var newArray = [];
+
+	for (var i = 0; i < currentArray.length; i++)
+		newArray[i] = currentArray[i].slice();
+	return newArray;
+}
+
+//сортирует массив массивов по первым элементам массивов
+function SORT(a) {
+	a.sort(function(i1, i2){return i2[0] - i1[0]});
+	for(var i = 0; i < a.length;i++) {
+		if (a[i] === a[i+1]) {
+			a.splice(i)
+		}
+	}
 }
 
 //функция NOD возвращиет наибольший общий делитель a и b, причем всегда положительный
