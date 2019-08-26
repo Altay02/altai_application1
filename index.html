@@ -20,9 +20,10 @@
 			#shit {
 				display: none;
 			}
-			#bracket1,#bracket2,#bracket3,#bracket4,#bracket5 {
+			#bracket0,#bracket1,#bracket2,#bracket3,#bracket4,#bracketPlusInfin,#bracketMinusInfin {
 				display: none;
 			}
+
 		</style>
 		<link rel="stylesheet" href="style.css">
 		<script type="text/javascript" async
@@ -44,6 +45,8 @@
 						<li id='btnPhomogeneousPolynomial3'>Однородное ур > возвратное 3 степени</li>
 						<li id='btnMethodOfUndeterCoef'>Уравнение на метод неопределенных коэффициентов</li>
 						<li id='btnInequality'>Неравенство</li>
+						<li id='btnSumOf4Degrees'>Сумма 4 степеней</li>
+						<li id='btnСommon'>Обычное ур. (Безу)</li>
 					</ul>
 					</li>
 					<li><a href="#">Home</a></li>
@@ -52,10 +55,10 @@
 				</ul>
 			</nav>
 		</div>
-		
+
 		<button id='btnGenerate'>Generate</button>
-		&#x221E;
-		<div id="mathtest" class="roojtcontainer">
+
+		<!--<div id="mathtest" class="roojtcontainer">
 			<math id="math" xmlns="http://www.w3.org/1998/Math/MathML">
 				<mfrac>
 					<mrow id="testmrow">
@@ -83,10 +86,171 @@
 				</mfrac>
 				<mo>=</mo>
 				<mn>0</mn>
+				<mn>&#x221E;</mn>
 			</math>
+		</div>-->
+
+		<!---------------------------------------------------------------------------------------------->
+		
+		<div id="Common" class="rootcontainer">
+			<div class="container">
+				<math xmlns="http://www.w3.org/1998/Math/MathML">
+					<mrow>
+						<mo id="signa"></mo>
+						<mrow>
+							<mi id="a">a</mi>
+							<mo>&InvisibleTimes;</mo>
+							<msup>
+								<mi>x</mi>
+								<mn>3</mn>
+							</msup>
+						</mrow>
+						<mrow id="mrowb">
+						<mo id="signb">+</mo>
+							<mi id="b">b</mi>
+							<mo>&InvisibleTimes;</mo>
+							<msup>
+								<mi>x</mi>
+								<mn>2</mn>
+							</msup>
+						</mrow>
+						<mrow id="mrowc">
+						<mo id="signc">+</mo>
+							<mi id="c">c</mi>							
+							<mo>&InvisibleTimes;</mo>
+							<mi>x</mi>
+						</mrow>
+						<mo id="signd">+</mo>
+						<mi id="d">d</mi>
+						<mo>=</mo>
+						<mn>0</mn>
+					</mrow>
+				</math>
+			</div>
+			<p id="par1Common"></p>
 		</div>
-		<h1>В дж/скрипте сделал вывод в консоль rootsFinal, preRanges и ranges. ranges- 3-мерный массив, чьи данные надо тупо вывести в ответ. Там диапазоны на блюдечке предоставлены</h1>
-<!---------------------------------------------------------------------------------------------->
+
+		<div id="SumOf4Degrees" class="rootcontainer">
+			<div id="Example">
+				<math xmlns="http://www.w3.org/1998/Math/MathML">
+					<mrow>
+						<msup id="Plus">
+							<mfenced>
+								<mrow>
+									<mn>t</mn>
+									<mo>+</mo>
+									<mn>a</mn>
+								</mrow>
+							</mfenced>
+							<mn>4</mn>
+						</msup>
+						<mo>+</mo>
+						<msup id="Minus">
+							<mfenced>
+								<mrow>
+									<mn>t</mn>
+									<mo>-</mo>
+									<mn>a</mn>
+								</mrow>
+							</mfenced>
+							<mn>4</mn>
+						</msup>
+					</mrow>
+					<mo>=</mo>
+					<mn>c</mn>
+				</math>
+			</div>
+			<!--<div id="Square">
+				<math xmlns="http://www.w3.org/1998/Math/MathML">
+					<mrow>
+						<msup id="Plus">
+							<mfenced>
+								<mrow>
+									<mo id="signa"></mo>
+									<mn id="a">a</mn>
+									<msup>
+										<mi>x</mi>
+										<mn>2</mn>
+									</msup>
+									<mrow id="mrowb">
+										<mo id="signb">+</mo>
+										<mn id="b">b</mn>
+										<mi>x</mi>
+									</mrow>
+									<mrow id="mrowc">
+										<mo id="signc">+</mo>
+										<mn id="c">c</mn>
+									</mrow>
+								</mrow>
+							</mfenced>
+							<mn>4</mn>
+						</msup>
+						<mo>+</mo>
+						<msup id="Minus">
+							<mfenced>
+								<mrow>
+									<mo id="signa"></mo>
+									<mn id="a">a</mn>
+									<msup>
+										<mi>x</mi>
+										<mn>2</mn>
+									</msup>
+									<mrow id="mrowb">
+										<mo id="signb">+</mo>
+										<mn id="b">b</mn>
+										<mi>x</mi>
+									</mrow>
+									<mrow id="mrowc">
+										<mo id="signc">+</mo>
+										<mn id="c">c</mn>
+									</mrow>
+								</mrow>
+							</mfenced>
+							<mn>4</mn>
+						</msup>
+					</mrow>
+					<mo>=</mo>
+					<mn id="d">d</mn>
+				</math>
+			</div>-->
+			<div id="Simple" style="display: none">
+				<math xmlns="http://www.w3.org/1998/Math/MathML">
+					<mrow>
+						<msup id="Plus">
+							<mfenced>
+								<mrow>
+									<mn id="b">-7</mn>
+									<mi>x</mi>
+									<mrow id="mrowPlusC">
+									<mo id="signc">+</mo>
+									<mn id="c">3</mn>
+									</mrow>
+								</mrow>
+							</mfenced>
+							<mn>4</mn>
+						</msup>
+						<mo>+</mo>
+						<msup id="Minus">
+							<mfenced>
+								<mrow>
+									<mn id="b">b</mn>
+									<mi>x</mi>
+									<mrow id="mrowMinusC">
+									<mo id="signc">+</mo>
+									<mn id="c">3</mn>
+									</mrow>
+								</mrow>
+							</mfenced>
+							<mn>4</mn>
+						</msup>
+					</mrow>
+					<mo>=</mo>
+					<mn id="d">d</mn>
+				</math>
+			</div>
+			<p id="par1SumOf4Degrees"></p>
+		</div>
+
 		<div id="Inequality" class="rootcontainer">
 			<div id="Equation" class="container">
 				<math xmlns="http://www.w3.org/1998/Math/MathML">
@@ -205,7 +369,7 @@
 							</mrow>
 						</mrow>
 					</mfrac>
-					<mo id="equal">=</mo>
+					<mpadded depth = "+1ex"><mo id="equal">=</mo></mpadded>
 					<mn>0</mn>
 				</math>
 			</div>
@@ -213,51 +377,59 @@
 			<div id="answers">
 				<span>answer = </span>
 				<math xmlns="http://www.w3.org/1998/Math/MathML">
-					<mrow id="bracket-infin" class="bracket">
-						<mfenced separators=";">
-							<mn id="bracketNumber1">-&infin;</mn>
-							<mn id="bracketNumber2"></mn>
-						</mfenced>
+					<mrow id="bracketMinusInfin" class="bracket">
+						<mo>(</mo>
+						<mn id="bracketNumber1">-&infin;</mn>
+						<mo>;</mo>
+						<mn id="bracketNumber2"></mn>
+						<mo id="bracketMinusInfinClose">)</mo>
+					</mrow>
+					<mrow id="bracket0" class="bracket">
+						<mo id="bracket0Open">(</mo>
+						<mn id="bracketNumber1"></mn>
+						<mo>;</mo>
+						<mn id="bracketNumber2"></mn>
+						<mo id="bracket0Close">)</mo>
 					</mrow>
 					<mrow id="bracket1" class="bracket">
-						<mfenced separators=";">
-							<mn id="bracketNumber1"></mn>
-							<mn id="bracketNumber2"></mn>
-						</mfenced>
+						<mo>&#x222a;</mo>
+						<mo id="bracket1Open">(</mo>
+						<mn id="bracketNumber1"></mn>
+						<mo>;</mo>
+						<mn id="bracketNumber2"></mn>
+						<mo id="bracket1Close">)</mo>
 					</mrow>
 					<mrow id="bracket2" class="bracket">
 						<mo>&#x222a;</mo>
-						<mfenced separators=";">
-							<mn id="bracketNumber1"></mn>
-							<mn id="bracketNumber2"></mn>
-						</mfenced>
+						<mo id="bracket2Open">(</mo>
+						<mn id="bracketNumber1"></mn>
+						<mo>;</mo>
+						<mn id="bracketNumber2"></mn>
+						<mo id="bracket2Close">)</mo>
 					</mrow>
 					<mrow id="bracket3" class="bracket">
 						<mo>&#x222a;</mo>
-						<mfenced separators=";">
-							<mn id="bracketNumber1"></mn>
-							<mn id="bracketNumber2"></mn>
-						</mfenced>
+						<mo id="bracket3Open">(</mo>
+						<mn id="bracketNumber1"></mn>
+						<mo>;</mo>
+						<mn id="bracketNumber2"></mn>
+						<mo id="bracket3Close">)</mo>
 					</mrow>
 					<mrow id="bracket4" class="bracket">
 						<mo>&#x222a;</mo>
-						<mfenced separators=";">
-							<mn id="bracketNumber1"></mn>
-							<mn id="bracketNumber2"></mn>
-						</mfenced>
+						<mo id="bracket4Open">(</mo>
+						<mn id="bracketNumber1"></mn>
+						<mo>;</mo>
+						<mn id="bracketNumber2"></mn>
+						<mo id="bracket4Close">)</mo>
 					</mrow>
-					<mrow id="bracket5" class="bracket">
+					<mrow id="bracketPlusInfin" class="bracket">
 						<mo>&#x222a;</mo>
-						<mfenced separators=";">
-							<mn id="bracketNumber1"></mn>
-							<mn id="bracketNumber2"></mn>
-						</mfenced>
-					</mrow>
-					<mrow id="bracket+infin" class="bracket">
-						<mfenced separators=";">
-							<mn id="bracketNumber1"></mn>
-							<mn id="bracketNumber2">+&infin;</mn>
-						</mfenced>
+						<mo id="bracketPlusInfinOpen">(</mo>
+						<mn id="bracketNumber1"></mn>
+						<mo>;</mo>
+						<mn id="bracketNumber2">+&infin;</mn>
+						<mo>)</mo>
 					</mrow>
 				</math>
 			</div>
