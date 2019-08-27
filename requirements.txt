@@ -7,4 +7,5 @@ pytz==2019.2
 sqlparse==0.3.0
 sympy==1.4
 psycopg2==2.6.2
+wheel==0.30.0
 whitenoise==3.2.2
