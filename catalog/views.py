@@ -4,13 +4,7 @@ from django.shortcuts import render
 
 from .models import Book, Author, BookInstance, Genre
 
-from sympy import *
-from random import *
 
-x1 = randint(0, 5)
-x2 = randint(0, 5)
-b = -x1 - x2
-c = x1 * x2
 def index(request):
     """
     Функция отображения для домашней страницы сайта.
