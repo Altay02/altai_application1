@@ -29,7 +29,7 @@ def index(request):
     return render(
         request,
         'index.html',
-        context={'num_books':num_books,'num_instances':num_instances,'num_instances_available':num_instances_available,'num_authors':num_authors,'num_genres':num_genres,'numSpecifiedBooks':numSpecifiedBooks,# 'x1':x1,'x2':x2,'b':b,'c':c,'num_visits':num_visits}, # num_visits appended
+        context={'num_books':num_books,'num_instances':num_instances,'num_instances_available':num_instances_available,'num_authors':num_authors,'num_genres':num_genres,'numSpecifiedBooks':numSpecifiedBooks},# 'x1':x1,'x2':x2,'b':b,'c':c,'num_visits':num_visits, # num_visits appended 
     )
 
 from django.views import generic
