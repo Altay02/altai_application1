@@ -26,7 +26,7 @@ var sumOf4Degrees = document.getElementById("SumOf4Degrees");
 var mathtest = document.getElementById("mathtest");
 var common = document.getElementById("Common");
 
-
+// делаем кнопкам функционал переключения
 btnSquareEq.onclick = function () {
 	switching();
 	squareEq.style.display = "block";
@@ -81,7 +81,7 @@ btnСommon.onclick = function () {
 	flag = "Common";
 }
 
-// эта функция закрывает все уравнения. Нужна для экономия места.
+// эта функция закрывает все уравнения-дивки. Нужна для экономия места.
 function switching() {
 	squareEq.style.display = "none";
 	polynomial3.style.display = "none";
@@ -112,15 +112,17 @@ function amountOfNumerals(x) {
 	return (x.toString().includes('.')) ? (x.toString().split('.').pop().length) : 0;
 }
 
+// фунция для тестов и экспериментов. сейчас не используется
 function testGenerate() {
-	var Equation1 = new SquareEqObject();
+	var Equation1 = new SquareEqObject();// объяляю уравнения
 	var testmrow = mathtest.querySelector("#testmrow");
-	var signa = testmrow.querySelector("#signa"),
+	var signa = testmrow.querySelector("#signa"),// объявляю элементы уравнения
 		a = testmrow.querySelector("#a"),
 		signb = testmrow.querySelector("#signb"),
 		b = testmrow.querySelector("#b"),
 		signc = testmrow.querySelector("#signc"),
 		c = testmrow.querySelector("#c");
+	// вывод в html
 	a.textContent = Math.abs(Equation1.a);
 	signa.textContent = Equation1.a >= 0 ? "" : "-";
 	b.textContent = Math.abs(Equation1.b);
@@ -129,7 +131,9 @@ function testGenerate() {
 	signc.textContent = Equation1.c >= 0 ? "+" : "-";
 
 }
-
+//*************************************************************************************
+//*************************************************************************************
+// генератор общих уравнений
 function commonGenerate() {
 	// объявление элементов уравнения
 	var par1 = common.querySelector("#par1Common"),
@@ -150,28 +154,33 @@ function commonGenerate() {
 	var Equation1 = new SquareEqObject(false, 4, 1),
 		x3 = Math.ceil(Math.random() * 4);// this is d
 	// вывод в html
+	// вывод а
 	signa.textContent = Equation1.a > 0 ? "" : "-";
 	Eqa.textContent = Math.abs(Equation1.a) === 1 ? "" : Math.abs(Equation1.a);
-	
+	// вывод b
 	signb.textContent = Equation1.b - Equation1.a * x3 > 0 ? "+" : "-";
 	Eqb.textContent = Math.abs(Equation1.b - Equation1.a * x3) === 1 ? "" : Math.abs(Equation1.b - Equation1.a * x3);
 	if (Equation1.b - Equation1.a * x3 === 0) { mrowb.style.display = "none";}
-	
+	// вывод c
 	signc.textContent = Equation1.c - Equation1.b * x3 > 0 ? "+" : "-";
 	Eqc.textContent = Math.abs(Equation1.c - Equation1.b * x3) === 1 ? "" : Math.abs(Equation1.c - Equation1.b * x3);
 	if (Equation1.c - Equation1.b * x3 === 0) { mrowc.style.display = "none";}
-	
+	// вывод d
 	signd.textContent = Equation1.c * x3 > 0 ? "-" : "+";
 	Eqd.textContent = Math.abs(Equation1.c * x3) === 1 ? "" : Math.abs(Equation1.c * x3);
 	// вывод в html ответов
 	var ans = [Equation1.x1, Equation1.x2, x3];
 	ans = finalAnswers(ans);
+	/*
 	par1.textContent = "ans= " + Equation1.x1 + ", " + Equation1.x2 + ", " + x3 + "; finalAns= " + ans;
+	*/
+	par1.textContent = "корни: " + ans;
 }
 
+// генератор уравнений на сумму 4 степеней
 function sumOf4DegreesGenerate() {
+	// объявляю элементы уравнения
 	var par =  sumOf4Degrees.querySelector("#par1SumOf4Degrees");
-	
 	var simple = sumOf4Degrees.querySelector("#Simple"),
 		example = sumOf4Degrees.querySelector("#Example"),
 		simplePlus = simple.querySelector("#Plus"),
@@ -185,10 +194,13 @@ function sumOf4DegreesGenerate() {
 		simPlusMrowC = simplePlus.querySelector("#mrowPlusC"),
 		simMinusMrowC = simpleMinus.querySelector("#mrowMinusC"),
 		simD = simple.querySelector("#d");
+	// включаю отображение
 		simPlusMrowC.style.display = "inline-block";
 		simMinusMrowC.style.display = "inline-block";
 	simple.style.display = "inline-block";
+	// прячу пример
 	example.style.display = "none";
+	// алгоритм генерации
 	var squares = [1, 4, 9],
 		sum = -6 * squares[Math.floor(Math.random() * 3)],
 		difference = Math.ceil(Math.random() * 5),
@@ -200,9 +212,12 @@ function sumOf4DegreesGenerate() {
 		r = Math.ceil(Math.random() * 11) - 6,
 		t = [Math.sqrt(tSquare),-Math.sqrt(tSquare)],
 		xs = [(t[0] - r) / a, (t[1] - r) / a];
+	/* для разработки
 	console.log(t);
 	console.log(r);
 	console.log(a);
+	*/
+	//вывод в хтмл
 	simple.style.display = "inline-block";
 	simPlusB.textContent = a === 1 ? "" : a;
 	simPlusSignC.textContent = r + e > 0 ? "+" : "-";
@@ -214,9 +229,10 @@ function sumOf4DegreesGenerate() {
 	if (r - e === 0) {	simMinusMrowC.style.display = "none";}
 	simD.textContent = d;
 	
-	par.textContent = "ans=" + xs;
+	par.textContent = "корни: " + xs;
 }
 
+// генератор неравенств
 function inequalityGenerate() {
 	// генерация рандомного знака неравенства
 	var equation = inequality.querySelector("#Equation"),
@@ -255,7 +271,7 @@ function inequalityGenerate() {
 			equal2.innerHTML = "&#x003c;";
 		}
 	}
-
+	// hignCoefSign представляет из себя пару плюса/минуса, либо минуса/плюса. Служит для того, чтоб расставлять плюсы и минусы на интервалах "прямой". roots - набор промежуточных данных про корни
 	var highCoefSign = [],
 		roots = [];
 
@@ -271,7 +287,6 @@ function inequalityGenerate() {
 		denominatorOpen1 = inequality.querySelector("#denominatorOpen1"),
 		denominatorClose1 = inequality.querySelector("#denominatorClose1"),
 		// объявление дивки неравенства-параболы
-		equation1 = inequality.querySelector("#Equation"),
 		equationsFraction = inequality.querySelector("#EquationsFraction"),
 		Equation1 = new SquareEqObject(true),
 		Equation2 = new SquareEqObject(true),
@@ -325,25 +340,29 @@ function inequalityGenerate() {
 
 	// объявление скобок в ответе
 	if (amountOfEquations === 1) {
+		// прячу дробь, вывожу простое уравнение 
 		equationsFraction.style.display = "none";
-		equation1.style.display = "inline-block";
-		var a = equation1.querySelector("#a"),
-			signa = equation1.querySelector("#signa"),
-			b = equation1.querySelector("#b"),
-			signb = equation1.querySelector("#signb"),
-			c = equation1.querySelector("#c"),
-			signc = equation1.querySelector("#signc"),
-			mrowb = equation1.querySelector("#mrowb"),
-			mrowc = equation1.querySelector("#mrowc");
-
+		equation.style.display = "inline-block";
+		// объявляю элементы неравенства
+		var a = equation.querySelector("#a"),
+			signa = equation.querySelector("#signa"),
+			b = equation.querySelector("#b"),
+			signb = equation.querySelector("#signb"),
+			c = equation.querySelector("#c"),
+			signc = equation.querySelector("#signc"),
+			mrowb = equation.querySelector("#mrowb"),
+			mrowc = equation.querySelector("#mrowc");
+		// вывод хтмл
 		Equation1.drawing(a, signa, b, signb, c, signc, mrowb, mrowc);
-
+		//запись промежуточных данных
 		roots = [[Equation1.x1, true], [Equation1.x2, true]];
 		SORT(roots);
 		highCoefSign = (Equation1.a > 0 ? ["+", "-"] : ["-", "+"]);
 	} else if (amountOfEquations === 2) {
+		// прячу простое уравнение, вывожу дробь 
 		equationsFraction.style.display = "inline-block";
-		equation1.style.display = "none";
+		equation.style.display = "none";
+		// объявляю и вывожу элементы неравенства
 		numerator1.style.display = "inline-block";
 		denominator1.style.display = "inline-block";
 		numerator2.style.display = "none";
@@ -352,9 +371,10 @@ function inequalityGenerate() {
 		numeratorClose1.textContent = "";
 		denominatorOpen1.textContent = "";
 		denominatorClose1.textContent = "";
+		// вывожу хтмл
 		Equation1.drawing(n1a, n1signa, n1b, n1signb, n1c, n1signc, n1mrowb, n1mrowc);
 		Equation2.drawing(d1a, d1signa, d1b, d1signb, d1c, d1signc, d1mrowb, d1mrowc);
-		// записываем матрицу корней
+		// записываем матрицу корней, highCoefSign
 		roots = [
 			[Equation1.x1, true],
 			[Equation1.x2, true],
@@ -363,8 +383,10 @@ function inequalityGenerate() {
 		SORT(roots);
 		highCoefSign = ((Equation1.a > 0 && Equation2.a > 0) || (Equation1.a < 0 && Equation2.a < 0) ? ["+", "-"] : ["-", "+"]);
 	} else if (amountOfEquations === 3) {
+		// прячу простое уравнение, вывожу дробь 
 		equationsFraction.style.display = "inline-block";
-		equation1.style.display = "none";
+		equation.style.display = "none";
+		// объявляю и вывожу элементы неравенства
 		numerator1.style.display = "inline-block";
 		denominator1.style.display = "inline-block";
 		numerator2.style.display = "inline-block";
@@ -373,10 +395,11 @@ function inequalityGenerate() {
 		numeratorClose1.textContent = ")";
 		denominatorOpen1.textContent = "";
 		denominatorClose1.textContent = "";
+		// вывожу хтмл
 		Equation1.drawing(n1a, n1signa, n1b, n1signb, n1c, n1signc, n1mrowb, n1mrowc);
 		Equation2.drawing(n2a, n2signa, n2b, n2signb, n2c, n2signc, n2mrowb, n2mrowc);
 		Equation3.drawing(d1a, d1signa, d1b, d1signb, d1c, d1signc, d1mrowb, d1mrowc);
-		// записываем матрицу корней
+		// записываем матрицу корней, highCoefSign
 		roots = [
 			[Equation1.x1, true],
 			[Equation1.x2, true],
@@ -391,8 +414,10 @@ function inequalityGenerate() {
 		i = (Equation3.a < 0 ? i+1 : i);
 		highCoefSign = (i % 2 === 0 ? ["+", "-"] : ["-", "+"]);
 	} else {
+		// прячу простое уравнение, вывожу дробь 
 		equationsFraction.style.display = "inline-block";
-		equation1.style.display = "none";
+		equation.style.display = "none";
+		// объявляю и вывожу элементы неравенства
 		numerator1.style.display = "inline-block";
 		denominator1.style.display = "inline-block";
 		numerator2.style.display = "inline-block";
@@ -405,7 +430,7 @@ function inequalityGenerate() {
 		Equation2.drawing(n2a, n2signa, n2b, n2signb, n2c, n2signc, n2mrowb, n2mrowc);
 		Equation3.drawing(d1a, d1signa, d1b, d1signb, d1c, d1signc, d1mrowb, d1mrowc);
 		Equation4.drawing(d2a, d2signa, d2b, d2signb, d2c, d2signc, d2mrowb, d2mrowc);
-		// записываем матрицу корней
+		// записываем матрицу корней, highCoefSign
 		roots = [
 			[Equation1.x1, true],
 			[Equation1.x2, true],
@@ -425,7 +450,7 @@ function inequalityGenerate() {
 	}
 	var rootsFinal = [],
 		ranges = [],
-		preRootsFinal = clone(roots);
+		preRootsFinal = clone(roots);// клонируем roots, поскольку дальнейший код его изменит, но мы хотим его сохранить для девелопинга
 	// расстановка степеней корней, плюсов/минусов, удаление одинаковых корней, добавление +/- бесконечности => создание матрицы корней
 	for(var i = 0, j = 0; i < preRootsFinal.length; i++) {
 		rootsFinal.push(preRootsFinal[i]);
@@ -446,9 +471,10 @@ function inequalityGenerate() {
 		rootsFinal[i].push(highCoefSign[j % 2]);
 		j = (Math.abs(rootsFinal[i][2] % 2) === 1 ? j+1 : j);
 	}
-
+	// добавляем бесконечность, как максимальную точку в диапазоне
 	rootsFinal.unshift([Infinity, false, 1, ""]);
 
+	// добавляем минус бесконечность, как минимальную точку в диапазоне
 	rootsFinal.push([-Infinity, false, 1, ((rootsFinal[rootsFinal.length-1][3] === "+" && Math.abs(rootsFinal[rootsFinal.length-1][2] % 2) === 1) || (rootsFinal[rootsFinal.length-1][3] === "-" && Math.abs(rootsFinal[rootsFinal.length-1][2] % 2) === 0) ? "-" : "+")]);
 	// конец расстановки степеней корней, плюсов/минусов, удаления одинаковых корней, добавления +/- бесконечности => создания матрицы корней
 
@@ -459,29 +485,30 @@ function inequalityGenerate() {
 			preRanges.splice(i, 1);
 		}
 	}
+	// переворачиваем порядок корней
 	preRanges.reverse();
-
-	if (inequalitySign === ">=" || inequalitySign === ">") {
+	// рассчет интервалов
+	if (inequalitySign === ">=" || inequalitySign === ">") {// расчет в случае положительного y
 		for(var i = 0; i < preRanges.length; i++) {
 			if (preRanges[i][3] === "+") {
 				ranges.push([[preRanges[i][0], preRanges[i][1]], [preRanges[i+1][0],  preRanges[i+1][1]]]);
 			}
 		}
 	} else {
-		for(var i = 0; i < preRanges.length; i++) {
+		for(var i = 0; i < preRanges.length; i++) {// расчет в случае отрицательного y
 			if (preRanges[i][3] === "-") {
 				ranges.push([[preRanges[i][0], preRanges[i][1]], [preRanges[i+1][0],  preRanges[i+1][1]]]);
 			}
 		}
 	}
+	// запись промежуточных данных в свойства функции для девелопинга
 	inequalityGenerate.rootsFinal = rootsFinal;
 	inequalityGenerate.preRanges = preRanges;
 	inequalityGenerate.ranges = ranges;
-	console.log(rootsFinal);
-	console.log(preRanges);
-	console.log(ranges);
-
+/* вывод промежуточных данных для разработки
 	par1.textContent = " ans= " + roots + ";          rootsFinal= " + rootsFinal + "               ranges= " + ranges;
+	*/
+	// добавление в ranges ссылок на элементы, завязываю на все него
 	for(var i = 0; i < ranges.length; i++) {
 		ranges[i].push(inequality.querySelector("#bracket" + i));// ranges[i][2] - ссылка на мроу-скобку
 		ranges[i][2].style.display = "inline-block";
@@ -497,7 +524,7 @@ function inequalityGenerate() {
 		ranges[i][0][2].textContent = ranges[i][0][0];
 		ranges[i][1][2].textContent = ranges[i][1][0];
 	}
-	// замена infinity на знак бесконечности
+	// замена -infinity на реальный знак -бесконечности
 	if (ranges[0][0][0] === -Infinity) {
 		ranges[0][2].style.display = "none";
 		ranges[0][2] = inequality.querySelector("#bracketMinusInfin");
@@ -512,6 +539,7 @@ function inequalityGenerate() {
 		// запись в html
 		ranges[0][1][2].textContent = ranges[0][1][0];
 	}
+	// замена infinity на реальный знак бесконечности
 	if (ranges[ranges.length-1][1][0] === Infinity) {
 		ranges[ranges.length-1][2].style.display = "none";
 		ranges[ranges.length-1][2] = inequality.querySelector("#bracketPlusInfin");
@@ -527,6 +555,7 @@ function inequalityGenerate() {
 	}
 }
 
+// генератор уравнений на метод неопределенных коэффициентов
 function methodOfUndeterCoefGenerate() {
 	var par1 = methodOfUndeterCoef.querySelector("#par1MethodOfUndeterCoef"),
 		signb = methodOfUndeterCoef.querySelector("#signb"),
@@ -537,7 +566,7 @@ function methodOfUndeterCoefGenerate() {
 		Eqd = methodOfUndeterCoef.querySelector("#d"),
 		signe = methodOfUndeterCoef.querySelector("#signe"),
 		Eqe = methodOfUndeterCoef.querySelector("#e");
-	// начало генерации
+	// начало генерации, генерация корней и расчет коэффициентов
 	do{
 		var x1 = Math.floor(Math.random() * 15 - 7),
 			x2 = Math.floor(Math.random() * 15 - 7),
@@ -548,7 +577,7 @@ function methodOfUndeterCoefGenerate() {
 			c = -x3 - x4,
 			d = x3 * x4;
 	} while (c + a === 0 || d + a * c + b === 0 || b * c + a * d === 0 || b * d === 0);
-
+	// вывод в хтмл
 	signb.textContent = (c + a > 0 ? "+" : "-");//+ первый символ
 	Eqb.textContent = Math.abs(c + a);
 	signc.textContent = (d + a * c + b > 0 ? "+" : "-");
@@ -559,11 +588,16 @@ function methodOfUndeterCoefGenerate() {
 	Eqe.textContent = Math.abs(b * d);
 
 	var ans = finalAnswers([x1, x2, x3, x4]);
-
+/* info for developing
 	par1.textContent = "a=" + a + "b=" + b + "c=" + c + "d=" + d + "; корни алгоритма: " + x1 + " " + x2 + " " + x3 + " " + x4 + "; реальные корни: " + ans;
+	*/
+	// вывод корней в хтмл
+	par1.textContent = "корни: " + ans;
 }
 
+// генератор однородных уравнений, переходящих в возвратные 
 function phomogeneousPolynomial3Generate() {
+	// объявление элементов уравнения
 	var par = phomogeneousPolynomial3.querySelector("#parPhomogeneousPolynomial3"),
 		signa = phomogeneousPolynomial3.querySelector("#signa"),
 		a = phomogeneousPolynomial3.querySelector("#a"),
@@ -573,12 +607,13 @@ function phomogeneousPolynomial3Generate() {
 		b = phomogeneousPolynomial3.querySelector("#b"),
 		signb2 = phomogeneousPolynomial3.querySelector("#signb2"),
 		b2 = phomogeneousPolynomial3.querySelector("#b2"),
-		random = Math.floor(Math.random() * 21 - 10),
-		// начало генерации
+		random = ranNum(),
+		// начало генерации, генерация корней
 		xy1 = (random === 0) ? 2 : random,
 		xy2 = 1 / xy1,
 		xy3 = -1;
-	if (xy2 > 0) {
+	// расчет/вывод в штмл коэффициентов
+	if (xy2 > 0) {// вывод, если xy > 0
 		a.textContent = (Math.abs(xy1) === 1 ? "" : Math.abs(xy1));
 		b.textContent = (Math.abs(xy1 * xy1 + 1 - xy1) === 1 ? "" : Math.abs(xy1 * xy1 + 1 - xy1));
 		signa.textContent = "";//+ первый символ
@@ -594,7 +629,7 @@ function phomogeneousPolynomial3Generate() {
 			signb.textContent = "-";
 			signb2.textContent = "-";
 		}
-	} else {
+	} else {// вывод, если xy < 0
 		a.textContent = (Math.abs(xy1) === 1 ? "" : Math.abs(xy1));
 		b.textContent = Math.abs(xy1 * xy1 + 1 + Math.abs(xy1)) === 1 ? "" : xy1 * xy1 + 1 + Math.abs(xy1);
 		signa.textContent = "";//+ первый символ
@@ -605,11 +640,15 @@ function phomogeneousPolynomial3Generate() {
 		signb2.textContent = "+";
 	}
 	var ans = finalAnswers([xy1, xy2, xy3]);
-
+/* инфа для девелопинга
 	par.textContent = "a=" + signa.textContent + a.textContent + "; b=" + signb.textContent + b.textContent + "; x/y= " + xy1 + ", " + xy2 + ", " + xy3 + "; реальные корни: " + ans;
+	*/
+	par.textContent = "корни: " + ans;
 }
 
+// генератор однородных уравнений, переходящих в квадратные
 function phomogeneousSqGenerate() {
+	// объявление элементов уравнения
 	var par1 = phomogeneousSq.querySelector("#parPhomogeneousSq"),
 		signa = phomogeneousSq.querySelector("#signa"),
 		a = phomogeneousSq.querySelector("#a"),
@@ -659,10 +698,13 @@ function phomogeneousSqGenerate() {
 	c.textContent = (Math.abs(nc) === 1 ? "" : Math.abs(nc));
 
 	var ans = finalAnswers([xy1, xy2]);
-
+/* инфа для девелопинга
 	par1.textContent = " a=" + na + "; b=" + nb + "с="  + nc + "; корни алгоритма: " + xy1 + " " + xy2 + "; реальные корни: " + ans;
+	*/
+	par1.textContent = "корни: " + ans;
 }
 
+// генератор возвратных уравнений 4 степени
 function polynomial4Generate() {
 	// объявление элементов уравнения
 	var par1 = polynomial4.querySelector("#par1Polynomial4"),
@@ -695,8 +737,9 @@ function polynomial4Generate() {
 	// расчет коэффициентов уравнения
 	var nb = -(y1 + y2),
 		nc = y1 * y2 + 2;
-// проверка на адекватность коэффициентов
+/* проверка на адекватность коэффициентов(for developing)
 	par1.textContent = "nb=" + nb + "; nc=" + nc + "; ";
+	*/
 	if (amountOfNumerals(nb) > 5 || amountOfNumerals(nc) > 5 || nb === 0) {
 		par2.textContent = " error. numbers are too large or b = 0)";
 	} else {
@@ -711,7 +754,9 @@ function polynomial4Generate() {
 			nc = nc * 10;
 			nac = nac * 10;
 		}
+		/* инфа для девелопинга
 		par1.textContent += "nb=" + nb + "; nc=" + nc + " nab=" + nab + "; nac=" + nac + "|||";
+		*/
 		// сокращаем "дроби" nb/nab и nc/nac
 		while (NOD([nb, nab]) !== 1) {//здесь могут быть баги, если нод будет равен -1
 			var nod = NOD([nb, nab]);
@@ -723,7 +768,9 @@ function polynomial4Generate() {
 			nc = nc / nod;
 			nac = nac / nod;
 		}
+		/* инфа для девелопинга
 		par1.textContent += "nb=" + nb + "; nc=" + nc + " nab=" + nab + "; nac=" + nac;
+		*/
 		// приводим дроби nb/nab и nc/nac к общему знаменателю
 		var denominator = NOK([nac, nab]);
 		nb = nb * (denominator / nab);
@@ -742,11 +789,15 @@ function polynomial4Generate() {
 		c.textContent = Math.abs(nc);
 // обработка и вывод ответов
 		var ans = finalAnswers([x1, x2, x3, x4]);
-
+/* info for developing
 		par2.textContent = " a=" + signa.textContent + a.textContent + "; b=" + signb.textContent + b.textContent + "с="  + signc.textContent + c.textContent + "; корни алгоритма: " + x1 + " " + x2 + " " + x3 + " " + x4 + "; реальные корни: " + ans + " Y-ки: " + y1 + " " + y2;
+		*/
+		// вывод корней в штмл
+		par2.textContent = "корни: " + ans;
 	}
 }
 
+// генератор возвратные уравнений 3 степени
 function polynomial3Generate() {
 	// объявление элементов уравнения
 	var par = polynomial3.querySelector("#parPolynomial3"),
@@ -758,13 +809,13 @@ function polynomial3Generate() {
 		b = polynomial3.querySelector("#b"),
 		signb2 = polynomial3.querySelector("#signb2"),
 		b2 = polynomial3.querySelector("#b2"),
-		random = Math.floor(Math.random() * 21 - 10),
+		random = ranNum(),
 		// начало генерации, корни
 		x1 = (random === 0) ? 2 : random,
 		x2 = 1 / x1,
 		x3 = -1;
 	//  расчет коэффициентов
-	if (x2 > 0) {
+	if (x2 > 0) {// вывод, если xy > 0
 		a.textContent = (Math.abs(x1) === 1 ? "" : Math.abs(x1));
 		b.textContent = (Math.abs(x1 * x1 + 1 - x1) === 1 ? "" : x1 * x1 + 1 - x1);
 		signa.textContent = "";//+ первый символ
@@ -780,7 +831,7 @@ function polynomial3Generate() {
 			signb.textContent = "-";
 			signb2.textContent = "-";
 		}
-	} else {
+	} else {// вывод, если xy < 0
 		a.textContent = (Math.abs(x1) === 1 ? "" : Math.abs(x1));
 		b.textContent = Math.abs(x1 * x1 + 1 + Math.abs(x1)) === 1 ? "" : x1 * x1 + 1 + Math.abs(x1);
 		signa.textContent = "";//+ первый символ
@@ -793,10 +844,15 @@ function polynomial3Generate() {
 	// обработка ответов
 	var ans = finalAnswers([x1, x2, x3]);
 	// вывод в html
+	/* инфа для разработки
 	par.textContent = "a=" + signa.textContent + a.textContent + "; b=" + signb.textContent + b.textContent + "; корни алгоритма: " + x1 + " " + x2 + " " + x3 + "; реальные корни: " + ans;
+	*/
+	par.textContent = "корни: " + ans;
 }
 
+// генератор квадратных уравнений
 function squareEqGenerate() {
+	// объявление элементов уравнения
 	var par = squareEq.querySelector("#parSquareEq"),
 		signa = squareEq.querySelector("#signa"),
 		a = squareEq.querySelector("#a"),
@@ -857,7 +913,7 @@ function squareEqGenerate() {
 //*****************************************************************************************
 //*****************************************************************************************
 
-// кнопка для генерации уравнения
+// функционал кнопки для генерации уравнения. Кнопка запускает соответствующюю генерацию в зависимости от флага
 btnGenerate.onclick = function () {
 	switch (flag) {
 		case "SquareEq":
@@ -899,13 +955,13 @@ function SquareEqObject(nullsAllowed, range, divider) {
 	// если b или c могут быть равны нулю
 	range = range || 20;
 	divider = divider || 2;
-	if (nullsAllowed === true) {
+	if (nullsAllowed === true) {// генерация корней с любыми коэффициентами a и b
 		var x1 = Math.floor(Math.random() * (2 * range + 1) - range) / divider,
 			x2 = Math.floor(Math.random() * (2 * range + 1) - range) / divider,
 			nb = -(x1 + x2),
 			nc = x1 * x2;
 	} else {
-		do {
+		do {// генерация корней с ненулевыми коэффициентами a и b
 			var x1 = Math.floor(Math.random() * (2 * range + 1) - range) / divider,
 				x2 = Math.floor(Math.random() * (2 * range + 1) - range) / divider,
 				nb = -(x1 + x2),
@@ -940,11 +996,12 @@ function SquareEqObject(nullsAllowed, range, divider) {
 	nc = nc * (denominator / nac);
 	var na = denominator;
 
-	if (Math.random() < 0.25) {
+	if (Math.random() < 0.2) {// умножаем уравнение на -1 иногда
 		na = -na;
 		nb = -nb;
 		nc = -nc;
 	}
+	// возврат корней и коэффициентов в качестве свойств
 	this.x1 = x1;
 	this.x2 = x2;
 	this.a = na;
@@ -952,13 +1009,16 @@ function SquareEqObject(nullsAllowed, range, divider) {
 	this.c = nc;
 }
 
-// метод квадратного уравнения
+// метод отрисовки квадратного уравнения
 SquareEqObject.prototype.drawing = function(a, signa, b, signb, c, signc, mrowb, mrowc) {
+	// включаем показ всего уравнения
 	mrowb.style.display = "inline-block";
 	mrowc.style.display = "inline-block";
+	// запись данных в штмл
 	a.textContent = Math.abs(this.a);
 	b.textContent = Math.abs(this.b);
 	c.textContent = Math.abs(this.c);
+	// расстановка плюсов/минусов, стирание нулевых одночленов
 	if (this.b === 1) {
 		signb.textContent = '+';
 		b.textContent = '';
