@@ -25,14 +25,6 @@ var inequality = document.getElementById("Inequality");
 var sumOf4Degrees = document.getElementById("SumOf4Degrees");
 var mathtest = document.getElementById("mathtest");
 var common = document.getElementById("Common");
-var about = document.getElementById("about");
-var aboutDiv = document.getElementById("aboutDiv");
-
-//переключение на дивку "о сайте"
-about.onclick = function () {
-	switching();
-	aboutDiv.style.display = "block";
-}
 
 // делаем кнопкам функционал переключения
 btnSquareEq.onclick = function () {
@@ -100,7 +92,6 @@ function switching() {
 	inequality.style.display = "none";
 	SumOf4Degrees.style.display = "none";
 	common.style.display = "none";
-	aboutDiv.style.display = "none";
 }
 
 //функция finalAnswers удаляет повторяющиеся элементы из массива, используется для массива корней
@@ -160,7 +151,7 @@ function commonGenerate() {
 	mrowb.style.display = "inline-block";
 	mrowc.style.display = "inline-block";
 	// начало генерации
-	var Equation1 = new SquareEqObject(false, 4, 2),
+	var Equation1 = new SquareEqObject(false, 4, 1),
 		x3 = Math.ceil(Math.random() * 4);// this is d
 	// вывод в html
 	// вывод а
@@ -183,7 +174,7 @@ function commonGenerate() {
 	/*
 	par1.textContent = "ans= " + Equation1.x1 + ", " + Equation1.x2 + ", " + x3 + "; finalAns= " + ans;
 	*/
-	par1.textContent = ans;
+	par1.textContent = "корни: " + ans;
 }
 
 // генератор уравнений на сумму 4 степеней
@@ -238,15 +229,11 @@ function sumOf4DegreesGenerate() {
 	if (r - e === 0) {	simMinusMrowC.style.display = "none";}
 	simD.textContent = d;
 	
-	par.textContent = xs;
+	par.textContent = "корни: " + xs;
 }
 
 // генератор неравенств
 function inequalityGenerate() {
-	// прячу текст
-	var inequalityP = inequality.getElementsByClassName("inequalityP");
-	inequalityP[0].style.display = "none";
-	inequalityP[1].style.display = "none";
 	// генерация рандомного знака неравенства
 	var equation = inequality.querySelector("#Equation"),
 		equationsFraction = inequality.querySelector("#EquationsFraction"),
@@ -605,7 +592,7 @@ function methodOfUndeterCoefGenerate() {
 	par1.textContent = "a=" + a + "b=" + b + "c=" + c + "d=" + d + "; корни алгоритма: " + x1 + " " + x2 + " " + x3 + " " + x4 + "; реальные корни: " + ans;
 	*/
 	// вывод корней в хтмл
-	par1.textContent = ans;
+	par1.textContent = "корни: " + ans;
 }
 
 // генератор однородных уравнений, переходящих в возвратные 
@@ -656,7 +643,7 @@ function phomogeneousPolynomial3Generate() {
 /* инфа для девелопинга
 	par.textContent = "a=" + signa.textContent + a.textContent + "; b=" + signb.textContent + b.textContent + "; x/y= " + xy1 + ", " + xy2 + ", " + xy3 + "; реальные корни: " + ans;
 	*/
-	par.textContent = ans;
+	par.textContent = "корни: " + ans;
 }
 
 // генератор однородных уравнений, переходящих в квадратные
@@ -714,7 +701,7 @@ function phomogeneousSqGenerate() {
 /* инфа для девелопинга
 	par1.textContent = " a=" + na + "; b=" + nb + "с="  + nc + "; корни алгоритма: " + xy1 + " " + xy2 + "; реальные корни: " + ans;
 	*/
-	par1.textContent = ans;
+	par1.textContent = "корни: " + ans;
 }
 
 // генератор возвратных уравнений 4 степени
@@ -731,31 +718,29 @@ function polynomial4Generate() {
 		signb2 = polynomial4.querySelector("#signb2"),
 		b2 = polynomial4.querySelector("#b2"),
 		signc = polynomial4.querySelector("#signс"),
-		c = polynomial4.querySelector("#c");
+		c = polynomial4.querySelector("#c"),
 		// начало генерации
-	do {
-		var x1 = ranNum(),
-			x2 = 1 / x1,
-			x3 = ranNum(),
-			x4 = 1 / x3;
-		// расчет игриков
-		if (Math.random() < 0.3) {
-			x1 = "DNE";
-			x2 = "DNE";
-			var y1 = Math.floor(Math.random() * 7 - 3) / 2,
-				y2 = (x3 * x3 + 1) / x3;
-		} else {
-			var y1 = (x1 * x1 + 1) / x1,
-				y2 = (x3 * x3 + 1) / x3;
-		}
-		// расчет коэффициентов уравнения
-		var nb = -(y1 + y2),
-			nc = y1 * y2 + 2;
-	} while(amountOfNumerals(nb) > 5 || amountOfNumerals(nc) > 5 || nb === 0);
+		x1 = ranNum(),
+		x2 = 1 / x1,
+		x3 = ranNum(),
+		x4 = 1 / x3;
+	// расчет игриков
+	if (Math.random() < 0.3) {
+		x1 = "DNE";
+		x2 = "DNE";
+		var y1 = Math.floor(Math.random() * 7 - 3) / 2,
+			y2 = (x3 * x3 + 1) / x3;
+	} else {
+		var y1 = (x1 * x1 + 1) / x1,
+			y2 = (x3 * x3 + 1) / x3;
+	}
+	// расчет коэффициентов уравнения
+	var nb = -(y1 + y2),
+		nc = y1 * y2 + 2;
 /* проверка на адекватность коэффициентов(for developing)
 	par1.textContent = "nb=" + nb + "; nc=" + nc + "; ";
 	*/
-	if (amountOfNumerals(nb) > 5 || amountOfNumerals(nc) > 5 || nb === 0) {//неактуально, если сделал дууайл
+	if (amountOfNumerals(nb) > 5 || amountOfNumerals(nc) > 5 || nb === 0) {
 		par2.textContent = " error. numbers are too large or b = 0)";
 	} else {
 		var	nab = 1,
@@ -803,22 +788,12 @@ function polynomial4Generate() {
 		signc.textContent = (nc > 0 ? "+" : "-");
 		c.textContent = Math.abs(nc);
 // обработка и вывод ответов
-		// оформляем ответы, убирая мусор
 		var ans = finalAnswers([x1, x2, x3, x4]);
-		if (x1 === "DNE") {
-			ans = finalAnswers([x2, x3, x4]);
-		}
-		if (x2 === "DNE") {
-			ans = finalAnswers([x1, x3, x4]);
-		}
-		if (x1 === "DNE" && x2 === "DNE") {
-			ans = finalAnswers([x3, x4]);
-		}
 /* info for developing
 		par2.textContent = " a=" + signa.textContent + a.textContent + "; b=" + signb.textContent + b.textContent + "с="  + signc.textContent + c.textContent + "; корни алгоритма: " + x1 + " " + x2 + " " + x3 + " " + x4 + "; реальные корни: " + ans + " Y-ки: " + y1 + " " + y2;
 		*/
 		// вывод корней в штмл
-		par2.textContent = ans;
+		par2.textContent = "корни: " + ans;
 	}
 }
 
@@ -872,7 +847,7 @@ function polynomial3Generate() {
 	/* инфа для разработки
 	par.textContent = "a=" + signa.textContent + a.textContent + "; b=" + signb.textContent + b.textContent + "; корни алгоритма: " + x1 + " " + x2 + " " + x3 + "; реальные корни: " + ans;
 	*/
-	par.textContent = ans;
+	par.textContent = "корни: " + ans;
 }
 
 // генератор квадратных уравнений
@@ -931,37 +906,12 @@ function squareEqGenerate() {
 		c.textContent = '';
 		signc.textContent = '';
 	}*/
-	par.textContent = Equation1.x1 + ' ' + Equation1.x2;
+	par.textContent = 'корни: ' + Equation1.x1 + ' ' + Equation1.x2;
 
 }
 
 //*****************************************************************************************
 //*****************************************************************************************
-
-
-var navEng = document.getElementsByClassName("eng"),
-	navRu = document.getElementsByClassName("ru"),
-	langBtn = document.querySelector("#checkbox1");
-// устанавливаю нон в качестве значения свойства, т.к. браузер почему-то не считает свойство navEng[1] = нон, хотя я прописал это в св-вах
-navEng[1].style.display = "none";
-// меняет язык
-langBtn.onclick = function () {
-	if (navEng[1].style.display == "none") {
-		for(i = 0; i < navEng.length;i++) {
-			navEng[i].style.display = "inline";
-		}
-		for(i = 0; i < navRu.length;i++) {
-			navRu[i].style.display = "none";
-		}
-	} else {
-		for(i = 0; i < navEng.length;i++) {
-			navEng[i].style.display = "none";
-		}
-		for(i = 0; i < navRu.length;i++) {
-			navRu[i].style.display = "inline";
-		}
-	}
-};
 
 // функционал кнопки для генерации уравнения. Кнопка запускает соответствующюю генерацию в зависимости от флага
 btnGenerate.onclick = function () {
