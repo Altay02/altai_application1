@@ -5,7 +5,11 @@ import sys
 
 
 def main():
+<<<<<<< HEAD
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'equationGenerator.settings')
+=======
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'locallibrary.settings')
+>>>>>>> 6c521d39e18788e2262e2e76988ffdde51eb796c
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
