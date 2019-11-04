@@ -34,7 +34,7 @@ about.onclick = function () {
 	aboutDiv.style.display = "block";
 }
 
-// делаем кнопкам функционал переключения
+// делаем кнопкам меню функционал переключения
 btnSquareEq.onclick = function () {
 	switching();
 	squareEq.style.display = "block";
@@ -993,8 +993,10 @@ btnGenerate.onclick = function () {
 		case "Common":
 			commonGenerate();
 			break;
-		case "":
-			testGenerate();
+		case "":// по умолчанию генерим квадратное ур.
+			flag = "SquareEq";
+			squareEq.style.display = "block";
+			squareEqGenerate();
 			break;
 
 	}
